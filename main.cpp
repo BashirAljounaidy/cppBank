@@ -331,14 +331,9 @@ void LoadFileToVector(const string& filename,vector<Client>& vClients){
 }
 
 
-//core functions
-void startApp(){
+int main() {
     LoadFileToVector(filename,vClients);
     MainMenuScreen();
-}
-
-int main() {
-    startApp();
     return 0;
 }
 
