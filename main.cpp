@@ -20,6 +20,7 @@ struct Client{
 string filename="clients.csv";
 vector<Client> vClients;
 vector<string> vAccountIds;
+double TotalBalances=0;
 
 //Core functions Declaration
 Client _ParseClientFromLineString(const string& line,char delimiter);
@@ -34,21 +35,24 @@ void ClearScreen();
 void ShowClientListScreen();
 void AddNewClientScreen();
 void ReadClientFromUser(Client& stClient);
-
-
 void DeleteClientScreen();
 void UpdateClientInfoScreen();
 void FindClientScreen();
 void TransactionsScreen();
+void DepositScreen();
+void WithdrawScreen();
+
 void MainMenuScreen();
 void ExitScreen();
 void NumberToScreen(short ScreenNumber);
-
-void UpdateAccountIdVector(vector<Client> vClients,vector<string>& vAccountIds){
+void ShowTotalBalancesScreen();
+void UpdateAccountIdVector(const vector<Client>& vClients,vector<string>& vAccountIds){
     vAccountIds.clear();
+    TotalBalances=0;
     for (short i = 0; i < vClients.size(); i++)
     {
         vAccountIds.push_back(vClients[i].AccountID);
+        TotalBalances+=vClients[i].Balance;
     }
 }
 
@@ -71,6 +75,15 @@ void backToMainMenu(string Message =""){
     cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
     cin.get();
     MainMenuScreen();
+}
+
+
+void backToTransactionMenu(string Message =""){
+    cout <<"\n"<<Message;
+    cout << "\n\nPress Enter to go back to Main Menu...";
+    cin.ignore(1000, '\n'); // Clear the input buffer
+    cin.get();
+    TransactionsScreen();
 }
 
 void MainMenuScreen() {
@@ -277,9 +290,95 @@ void FindClientScreen() {
     backToMainMenu();
 }
 
+void NumberToTransactionsScreens(short& ScreenNumber){
+    switch (ScreenNumber)
+    {
+    case 1:DepositScreen();break;
+    case 2:WithdrawScreen();break;
+    case 3:ShowTotalBalancesScreen();break;
+    case 4:MainMenuScreen();break;
+    default:backToMainMenu("Error , Please Enter a valid Option") ;break;
+    }
+}
+
 void TransactionsScreen() {
-    // Placeholder implementation
-    // Real implementation goes here
+    clearScreen();
+    UpdateAccountIdVector(vClients,vAccountIds);
+    cout << "===========================================\n";
+    cout << "\t\tTransactions Screen\n";
+    cout << "===========================================\n";
+    cout << "\t[1] Deposit.\n";
+    cout << "\t[2] Withdraw.\n";
+    cout << "\t[3] Total Balances.\n";
+    cout << "\t[4] Main Menu.\n";
+    cout << "===========================================\n";
+    short ScreenNumber;
+    cin>>ScreenNumber;
+    if (ScreenNumber>4 || ScreenNumber<1) {
+        cinflush();
+        TransactionsScreen();
+    };
+    NumberToTransactionsScreens(ScreenNumber);
+
+}
+
+void ReadDepositFromUser(Client& stClient){
+    double amount=0;
+    cout << "Enter Ammount to deposit Balance? ";
+    cin >> amount;
+    stClient.Balance += amount;
+}
+
+void ReadWithdrawFromUser(Client& stClient){
+    double amount=0;
+    cout << "Enter Ammount to Withdraw Balance? ";
+    cin >> amount;
+    stClient.Balance -= amount;
+}
+
+void DepositScreen() {
+    string AccountID;
+    Client stClient;
+    clearScreen();
+    AccountID=ReadClientAccountId();
+    short ClientLocation = FindByAccountNumber(AccountID,vClients);
+    if (ClientLocation == -1)  {
+        cout <<AccountID<< "Client not found.\n" ;
+        backToTransactionMenu();
+    }
+    cout<<"\nClient with ID "<<AccountID<<" Founded \n";
+    PrintSingleClientInfo(vClients[ClientLocation]);
+    cout<<"\nUpdate Client\n";
+    ReadDepositFromUser(vClients[ClientLocation]);
+    PrintSingleClientInfo(vClients[ClientLocation]);
+    cout <<AccountID<<" Money Added Successfully.\n";
+    backToTransactionMenu();
+}
+
+void WithdrawScreen() {
+    string AccountID;
+    Client stClient;
+    clearScreen();
+    AccountID=ReadClientAccountId();
+    short ClientLocation = FindByAccountNumber(AccountID,vClients);
+    if (ClientLocation == -1)  {
+        cout <<AccountID<< "Client not found.\n" ;
+        backToTransactionMenu();
+    }
+    cout<<"\nClient with ID "<<AccountID<<" Founded \n";
+    PrintSingleClientInfo(vClients[ClientLocation]);
+    cout<<"\nUpdate Client\n";
+    ReadWithdrawFromUser(vClients[ClientLocation]);
+    cout <<AccountID<<" Money Withdrawl Successfully.\n";
+    backToTransactionMenu();
+}
+
+void ShowTotalBalancesScreen(){
+    clearScreen();
+    cout<<"\nShowClientListScreen\n";
+    PrintAllClientsData(vClients);
+    cout<<setw(50)<<left<<" Total Balances = "<< TotalBalances;
+    backToTransactionMenu();
 }
 
 void ExitScreen() {
@@ -336,4 +435,3 @@ int main() {
     MainMenuScreen();
     return 0;
 }
-
