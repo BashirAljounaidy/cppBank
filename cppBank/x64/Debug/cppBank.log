@@ -1,0 +1,36 @@
+﻿  cppBank.cpp
+C:\cppBank\clsString.h(43,25): warning C4267: 'return': conversion from 'size_t' to 'short', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsString.h(48,29): warning C4267: 'return': conversion from 'size_t' to 'short', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsString.h(60,30): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsString.h(197,29): warning C4267: 'return': conversion from 'size_t' to 'short', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsString.h(328,30): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsString.h(376,22): warning C4267: 'initializing': conversion from 'size_t' to 'short', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsInputValidate.h(115,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsInputValidate.h(119,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsBankClient.h(31,65): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsAddNewClientScreen.h(30,66): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsUpdateClientScreen.h(47,66): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'cppBank.cpp')
+  
+C:\cppBank\clsBankClient.h(332,1): warning C4715: 'clsBankClient::Save': not all control paths return a value
+  cppBank.vcxproj -> C:\cppBank\x64\Debug\cppBank.exe
