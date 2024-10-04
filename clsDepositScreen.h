@@ -1,14 +1,15 @@
 #pragma once
+
 #include <iostream>
 #include "clsScreen.h"
-#include "clsPerson.h"
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
 
-class clsDeleteClientScreen :protected clsScreen
+class clsDepositScreen : protected clsScreen
 {
 
 private:
+
     static void _PrintClient(clsBankClient Client)
     {
         cout << "\nClient Card:";
@@ -25,48 +26,53 @@ private:
 
     }
 
-public:
-    static void ShowDeleteClientScreen()
+    static string _ReadAccountNumber()
     {
-        if (!CheckAccessRights(clsUser::enPermissions::pDeleteClient))
-        {
-            return;// this will exit the function and it will not continue
-        }
-
-        _DrawScreenHeader("\tDelete Client Screen");
-
         string AccountNumber = "";
+        cout << "\nPlease enter AccountNumber? ";
+        cin >> AccountNumber;
+        return AccountNumber;
+    }
 
-        cout << "\nPlease Enter Account Number: ";
-        AccountNumber = clsInputValidate::ReadString();
+
+public:
+
+    static void ShowDepositScreen()
+    {
+        _DrawScreenHeader("\t   Deposit Screen");
+
+        string AccountNumber = _ReadAccountNumber();
+
+
         while (!clsBankClient::IsClientExist(AccountNumber))
         {
-            cout << "\nAccount number is not found, choose another one: ";
-            AccountNumber = clsInputValidate::ReadString();
+            cout << "\nClient with [" << AccountNumber << "] does not exist.\n";
+            AccountNumber = _ReadAccountNumber();
         }
 
         clsBankClient Client1 = clsBankClient::Find(AccountNumber);
         _PrintClient(Client1);
 
-        cout << "\nAre you sure you want to delete this client y/n? ";
+        double Amount = 0;
+        cout << "\nPlease enter deposit amount? ";
+        Amount = clsInputValidate::ReadDblNumber();
 
+        cout << "\nAre you sure you want to perform this transaction? ";
         char Answer = 'n';
         cin >> Answer;
 
-        if (Answer == 'y' || Answer == 'Y')
+        if (Answer == 'Y' || Answer == 'y')
         {
+            Client1.Deposit(Amount);
+            cout << "\nAmount Deposited Successfully.\n";
+            cout << "\nNew Balance Is: " << Client1.AccountBalance;
 
-
-            if (Client1.Delete())
-            {
-                cout << "\nClient Deleted Successfully :-)\n";
-                _PrintClient(Client1);
-            }
-            else
-            {
-                cout << "\nError Client Was not Deleted\n";
-            }
         }
+        else
+        {
+            cout << "\nOperation was cancelled.\n";
+        }
+
     }
 
 };

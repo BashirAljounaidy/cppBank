@@ -3,6 +3,9 @@
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include <iomanip>
+#include "clsDepositScreen.h"
+#include "clsWithdrawScreen.h"
+#include "clsTotalBalancesScreen.h"
 
 using namespace std;
 
@@ -26,17 +29,21 @@ private:
 
     static void _ShowDepositScreen()
     {
-        cout << "\n Deposit Screen will be here.\n";
+        //cout << "\n Deposit Screen will be here.\n";
+        clsDepositScreen::ShowDepositScreen();
     }
 
     static void _ShowWithdrawScreen()
     {
-        cout << "\n Withdraw Screen will be here.\n";
+        //cout << "\n Withdraw Screen will be here.\n";
+        clsWithdrawScreen::ShowWithdrawScreen();
     }
 
     static void _ShowTotalBalancesScreen()
     {
-        cout << "\n Balances Screen will be here.\n";
+        // cout << "\n Balances Screen will be here.\n";
+        clsTotalBalancesScreen::ShowTotalBalances();
+
     }
 
     static void _GoBackToTransactionsMenue()
@@ -67,6 +74,7 @@ private:
             break;
         }
 
+
         case enTransactionsMenueOptions::eShowTotalBalance:
         {
             system("cls");
@@ -75,10 +83,11 @@ private:
             break;
         }
 
-
         case enTransactionsMenueOptions::eShowMainMenue:
         {
+
             //do nothing here the main screen will handle it :-) ;
+
         }
         }
 
@@ -93,9 +102,13 @@ public:
     static void ShowTransactionsMenue()
     {
 
+        if (!CheckAccessRights(clsUser::enPermissions::pTranactions))
+        {
+            return;// this will exit the function and it will not continue
+        }
 
         system("cls");
-        _DrawScreenHeader("\t  Transactions Screen");
+        _DrawScreenHeader("\tTransactions Screen");
 
         cout << setw(37) << left << "" << "===========================================\n";
         cout << setw(37) << left << "" << "\t\t  Transactions Menue\n";
