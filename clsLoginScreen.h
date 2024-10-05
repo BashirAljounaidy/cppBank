@@ -14,16 +14,27 @@ private:
     static  void _Login()
     {
         bool LoginFaild = false;
-
+        short FailCount = 0;
         string Username, Password;
         do
         {
 
             if (LoginFaild)
             {
-                cout << "\nInvlaid Username/Password!\n\n";
+                FailCount++;
+
+                cout << "\nInvlaid Username/Password!";
+                cout << "\nYou have " << (3 - FailCount)
+                    << " Trial(s) to login.\n\n";
             }
 
+            if (FailCount>=3)
+            {
+                
+                cout << "\nSystem Locked" << endl;
+                system("pause>0");
+                exit(0);
+            }
             cout << "Enter Username? ";
             cin >> Username;
 
