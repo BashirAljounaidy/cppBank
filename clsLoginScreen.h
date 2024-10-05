@@ -5,7 +5,8 @@
 #include "clsUser.h"
 #include <iomanip>
 #include "Global.h"
-
+#include "clsDate.h"
+// Dont overwrite
 class clsLoginScreen :protected clsScreen
 {
 
@@ -64,6 +65,11 @@ public:
     static void Logout() {
         CurrentUser = clsUser::Find("", "");
     }
+
+    static void RegisterToLogFile(){
+        CurrentUser.RegisterLogIn();
+    }
+
 
 };
 

@@ -17,6 +17,11 @@ C:\cppBank\clsString.h(328,30): warning C4267: '=': conversion from 'size_t' to 
 C:\cppBank\clsString.h(376,22): warning C4267: 'initializing': conversion from 'size_t' to 'short', possible loss of data
   (compiling source file 'cppBank.cpp')
   
+C:\cppBank\clsUser.h(186,12): warning C4240: nonstandard extension used: access to 'clsUser::stLoginRegisterRecord' now defined to be 'public', previously it was defined to be 'private'
+  (compiling source file 'cppBank.cpp')
+      C:\cppBank\clsUser.h(23,12):
+      see declaration of 'clsUser::stLoginRegisterRecord'
+  
 C:\cppBank\clsInputValidate.h(115,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'cppBank.cpp')
   
@@ -45,6 +50,6 @@ C:\cppBank\clsTotalBalancesScreen.h(57,82): warning C4244: 'argument': conversio
   (compiling source file 'cppBank.cpp')
   
 C:\cppBank\clsBankClient.h(312,1): warning C4715: 'clsBankClient::Save': not all control paths return a value
+C:\cppBank\clsUser.h(344,1): warning C4715: 'clsUser::Save': not all control paths return a value
 C:\cppBank\clsBankClient.h(366,1): warning C4715: 'clsBankClient::Withdraw': not all control paths return a value
-C:\cppBank\clsUser.h(309,1): warning C4715: 'clsUser::Save': not all control paths return a value
   cppBank.vcxproj -> C:\cppBank\x64\Debug\cppBank.exe

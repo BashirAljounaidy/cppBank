@@ -3,6 +3,7 @@
 #include "clsLoginScreen.h"
 #include "Global.h"
 
+
 int main()
 {
     while (true) {
@@ -10,6 +11,7 @@ int main()
             clsLoginScreen::ShowLoginScreen();
         }
         else {
+            clsLoginScreen::RegisterToLogFile();
             clsMainScreen::ShowMainMenue();
         }
     }
