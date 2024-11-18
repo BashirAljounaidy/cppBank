@@ -1,5 +1,52 @@
+<<<<<<< HEAD
 *
 !*.cpp
 !*.md
 !.gitignore
 !*.csv
+=======
+# Prerequisites
+*.d
+*.sln
+cppBank.aps
+cppBank/
+x64/
+*.rc
+cppBank.vcxproj.user
+resource.h
+.gitattributes
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+/.vs
+cppBank.vcxproj
+cppBank.vcxproj.filters
+0
+>>>>>>> MyWork
