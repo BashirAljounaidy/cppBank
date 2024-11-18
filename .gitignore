@@ -1,5 +1,10 @@
 # Prerequisites
 *.d
+*.sln
+cppBank.aps
+cppBank/
+x64/
+
 
 # Compiled Object files
 *.slo
@@ -31,3 +36,9 @@
 *.out
 *.app
 /.vs
+cppBank.vcxproj
+cppBank.vcxproj.filters
+cppBank.vcxproj
+cppBank.vcxproj.filters
+cppBank.vcxproj
+cppBank.vcxproj.filters
