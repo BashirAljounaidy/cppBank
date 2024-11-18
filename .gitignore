@@ -4,7 +4,10 @@
 cppBank.aps
 cppBank/
 x64/
-
+*.rc
+cppBank.vcxproj.user
+resource.h
+.gitattributes
 
 # Compiled Object files
 *.slo
@@ -42,3 +45,4 @@ cppBank.vcxproj
 cppBank.vcxproj.filters
 cppBank.vcxproj
 cppBank.vcxproj.filters
+0
